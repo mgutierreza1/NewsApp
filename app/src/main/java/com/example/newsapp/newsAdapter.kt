@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.ui.main.Articulos
 import com.squareup.picasso.Picasso
 
-class techCrunchAdapter(articles: Articulos?): RecyclerView.Adapter<techCrunchAdapter.ViewHolder>() {
+class NewsAdapter(articles: Articulos?): RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     var articulos: Articulos? = articles
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var imageNew: ImageView? = null
@@ -38,11 +38,15 @@ class techCrunchAdapter(articles: Articulos?): RecyclerView.Adapter<techCrunchAd
         val data = articulos!!.articles[position]
         holder.imageNew!!.loadUrl(data.urlToImage)
         holder.titleTV!!.text = data.title
-        holder.authorTV!!.text = data.author
+        if(data.author.equals(null)) {
+            holder.authorTV!!.text = "Anónimo"
+        } else {
+            holder.authorTV!!.text = data.author
+        }
         holder.descriptionTV!!.text = data.description
     }
 
-    fun ImageView.loadUrl(url: String) {
+    private fun ImageView.loadUrl(url: String) {
         Picasso.with(context).load(url).into(this)
     }
 

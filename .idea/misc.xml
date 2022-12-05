@@ -5,10 +5,13 @@
       <map>
         <entry key="..\:/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.2828125" />
         <entry key="..\:/NewsApp/app/src/main/res/layout/favorites_fragment.xml" value="0.26481481481481484" />
+        <entry key="..\:/NewsApp/app/src/main/res/layout/first_fragment.xml" value="0.26666666666666666" />
         <entry key="..\:/NewsApp/app/src/main/res/layout/fragment_main.xml" value="0.26481481481481484" />
+        <entry key="..\:/NewsApp/app/src/main/res/layout/new2_item.xml" value="0.23645833333333333" />
         <entry key="..\:/NewsApp/app/src/main/res/layout/new_item.xml" value="0.20092592592592592" />
         <entry key="..\:/NewsApp/app/src/main/res/layout/news_fragment.xml" value="0.19897435897435897" />
         <entry key="..\:/NewsApp/app/src/main/res/layout/saves_fragment.xml" value="0.26481481481481484" />
+        <entry key="..\:/NewsApp/app/src/main/res/layout/second_fragment.xml" value="0.26666666666666666" />
       </map>
     </option>
   </component>

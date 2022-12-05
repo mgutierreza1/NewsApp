@@ -9,15 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.beust.klaxon.Klaxon
-import com.example.newsapp.techCrunchAdapter
+import com.example.newsapp.NewsAdapter
 import com.example.newsapp.R
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.net.URL
 
-data class Noticia(val author: String, val title: String, val description: String, val urlToImage: String)
-data class  Articulos(val articles: ArrayList<Noticia>)
+private var json = Json { ignoreUnknownKeys = true; coerceInputValues = true}
 
 class FirstFragment: Fragment() {
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -29,7 +29,7 @@ class FirstFragment: Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.news_fragment, container, false)!!
+        val view = inflater.inflate(R.layout.fragment_main, container, false)!!
         swipeRefreshLayout = view.findViewById(R.id.container)
         setRecyclerView(view)
         swipeRefreshLayout.setOnRefreshListener {
@@ -43,7 +43,7 @@ class FirstFragment: Fragment() {
         val articles = setNews()
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = techCrunchAdapter(articles)
+        recyclerView.adapter = NewsAdapter(articles)
     }
 
     fun setNews(): Articulos? {
@@ -51,7 +51,8 @@ class FirstFragment: Fragment() {
         val result = getNews()
         try {
             // Parse result string JSON to data class
-            articulos = result?.let { it1 -> Klaxon().parse<Articulos>(it1) }
+//            articulos = result?.let { it1 -> Klaxon().parse<Articulos>(it1) }
+            articulos = json.decodeFromString<Articulos>(result.toString())
         }
         catch(err:Error) {
             print("Error when parsing JSON: "+err.localizedMessage)
