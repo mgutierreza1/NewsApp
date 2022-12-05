@@ -9,20 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.newsapp.Articulos
 import com.example.newsapp.NewsAdapter
 import com.example.newsapp.R
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.net.URL
-
-@Serializable
-data class Noticia(val author: String = "Anonimo", val title: String,
-                   val description: String, val urlToImage: String = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsidecafsrl.com%2Fcategory%2Fimpuestos-nacionales%2F&psig=AOvVaw3uhBYTTdlVxymKpiCsREMj&ust=1670333404131000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNjcjP_K4vsCFQAAAAAdAAAAABAD")
-@Serializable
-data class Articulos(val articles: ArrayList<Noticia>)
 
 private var json = Json { ignoreUnknownKeys = true; coerceInputValues = true}
 
@@ -50,15 +44,13 @@ class SecondFragment: Fragment()  {
         val articles = setNews()
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = NewsAdapter(articles)
+        recyclerView.adapter = NewsAdapter(articles, context)
     }
 
     private fun setNews(): Articulos? {
         var articulos: Articulos? = null
         val result = getNews()
         try {
-            // Parse result string JSON to data class
-//            articulos = result?.let { it1 -> Klaxon().parse<Articulos>(it1) }
             articulos = json.decodeFromString<Articulos>(result.toString())
         }
         catch(err:Error) {

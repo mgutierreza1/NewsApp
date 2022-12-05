@@ -4,6 +4,7 @@
     <string name="tab_text_2">Wall Street</string>
     <string name="tab_text_3">Tesla</string>
 
-    <string name="check_fav">Ver más</string>
-    <string name="save">Compartir</string>
+    <string name="cmore">Ver más</string>
+    <string name="share">Compartir</string>
+    <string name="anonymous">Anónimo</string>
 </resources>

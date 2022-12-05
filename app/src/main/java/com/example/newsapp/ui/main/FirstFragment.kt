@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.newsapp.Articulos
 import com.example.newsapp.NewsAdapter
 import com.example.newsapp.R
 import kotlinx.serialization.decodeFromString
@@ -43,15 +44,13 @@ class FirstFragment: Fragment() {
         val articles = setNews()
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = NewsAdapter(articles)
+        recyclerView.adapter = NewsAdapter(articles, context)
     }
 
     fun setNews(): Articulos? {
         var articulos: Articulos? = null
         val result = getNews()
         try {
-            // Parse result string JSON to data class
-//            articulos = result?.let { it1 -> Klaxon().parse<Articulos>(it1) }
             articulos = json.decodeFromString<Articulos>(result.toString())
         }
         catch(err:Error) {

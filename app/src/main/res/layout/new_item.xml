@@ -55,24 +55,24 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btn_cmore"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/check_fav"
+                    android:text="@string/cmore"
                     app:icon="@drawable/icons8_left_2_50"
                     app:iconGravity="start"
                     app:iconSize="25sp"
                     app:toggleCheckedStateOnClick="true" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btn_share"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/save"
+                    android:text="@string/share"
                     app:backgroundTint="@color/purple_500"
                     app:icon="?attr/actionModeShareDrawable"
                     app:iconPadding="10dp" />
